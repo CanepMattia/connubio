@@ -85,6 +85,7 @@
   .card .body{padding:22px 22px 26px;}
   .card h3{font-size:1.5rem;color:var(--cream);letter-spacing:.01em;}
   .card p{color:var(--muted);font-size:.95rem;margin-top:6px;}
+  .swipe-hint{display:none;text-align:center;color:var(--gold);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;margin-top:20px;}
 
   /* COSTATE FEATURE */
   .costate{background:var(--navy-deep);}
@@ -177,8 +178,11 @@
     header.menu-open .burger span:nth-child(2){opacity:0;}
     header.menu-open .burger span:nth-child(3){top:10px;transform:rotate(-45deg);}
     .hero{min-height:92vh;}
-    .dish-grid{grid-template-columns:1fr;gap:22px;}
-    .card .ph{aspect-ratio:16/10;}
+    .dish-grid{display:flex;grid-template-columns:none;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-20px;margin-right:-20px;padding:4px 20px 12px;scroll-padding-left:20px;}
+    .dish-grid::-webkit-scrollbar{display:none;}
+    .card{flex:0 0 80%;scroll-snap-align:start;}
+    .card .ph{aspect-ratio:16/11;}
+    .swipe-hint{display:block;}
     .costate .wrap{grid-template-columns:1fr;gap:30px;}
     .costate .ph{aspect-ratio:4/3;max-height:340px;order:-1;}
     .dishes{grid-template-columns:1fr;gap:22px;}
@@ -253,6 +257,7 @@
         <div class="body"><h3>Le costate</h3><p>Selezione e frollatura curate nel dettaglio. Una scelta precisa.</p></div>
       </div>
     </div>
+    <p class="swipe-hint">scorri per scoprire i piatti →</p>
   </div>
 </section>
 
