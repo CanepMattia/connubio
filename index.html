@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Connubio · Vino e Cucina · Pinerolo</title>
+<link rel="icon" href="images/favicon.png" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+<meta name="description" content="Connubio vino e cucina, Pinerolo. Cucina di territorio e ricerca, pasta di produzione propria, costate frollate e una carta di vini ricercata. Prenota il tuo tavolo." />
+<meta name="theme-color" content="#283048" />
+<meta property="og:type" content="restaurant" />
+<meta property="og:title" content="Connubio · Vino e Cucina · Pinerolo" />
+<meta property="og:description" content="Cucina di territorio e ricerca, pasta di produzione propria e costate frollate. A Pinerolo." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#283048; --navy-deep:#1e2540; --navy-soft:#313a5a; --panel:#2e3753;
+    --cream:#f4f0e6; --muted:#a9afc2; --gold:#c2a36b; --gold-soft:#d8be8e;
+    --line:rgba(244,240,230,.14);
+    --serif:'Cormorant Garamond',serif; --script:'Sacramento',cursive; --sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;overflow-x:hidden;width:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  body{font-family:var(--sans);color:var(--cream);background:var(--navy);line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%;max-width:100%;}
+  img,svg,iframe{max-width:100%;}
+  section,footer{overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{width:100%;max-width:1160px;margin:0 auto;padding-left:26px;padding-right:26px;}
+  .sect{padding-top:96px;padding-bottom:96px;}
+  .script{font-family:var(--script);color:var(--gold-soft);font-weight:400;}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;}
+  .sect-head{text-align:center;max-width:680px;margin:0 auto 60px;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .sect-head .script{font-size:3.4rem;line-height:.9;}
+  .sect-head p{color:var(--muted);font-size:1.06rem;margin-top:8px;}
+  .rule{width:60px;height:1px;background:var(--gold);opacity:.6;margin:6px auto;}
+
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--sans);font-weight:500;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;padding:.95em 2em;border-radius:2px;cursor:pointer;border:1px solid transparent;transition:all .25s;}
+  .btn-gold{background:var(--gold);color:var(--navy-deep);}
+  .btn-gold:hover{background:var(--gold-soft);}
+  .btn-out{background:transparent;border-color:rgba(244,240,230,.4);color:var(--cream);}
+  .btn-out:hover{border-color:var(--gold);color:var(--gold-soft);}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:60;transition:all .35s;}
+  header .bar{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px;transition:padding .35s;}
+  header.scrolled{background:rgba(30,37,64,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);}
+  header.scrolled .bar{padding-top:13px;padding-bottom:13px;}
+  .brand{display:flex;flex-direction:row;align-items:center;gap:12px;line-height:1;}
+  .brand .mk{height:34px;width:auto;display:block;}
+  .brand .bt{display:flex;flex-direction:column;}
+  .brand b{font-family:var(--serif);font-weight:600;font-size:1.5rem;letter-spacing:.02em;}
+  .brand small{font-family:var(--sans);font-size:.6rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-top:3px;}
+  nav.links{display:flex;align-items:center;gap:32px;}
+  nav.links a{font-family:var(--sans);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);transition:color .2s;}
+  nav.links a:not(.btn):hover{color:var(--gold-soft);}
+  nav.links a.btn{color:var(--navy-deep);}
+  nav.links .btn{padding:.7em 1.5em;font-size:.78rem;}
+  .burger{display:none;background:none;border:0;width:30px;height:22px;position:relative;cursor:pointer;z-index:80;}
+  .burger span{position:absolute;left:0;width:100%;height:1.5px;background:var(--cream);transition:.3s;}
+  .burger span:nth-child(1){top:0;}.burger span:nth-child(2){top:10px;}.burger span:nth-child(3){top:20px;}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;}
+  .hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center/cover no-repeat;}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,37,64,.72),rgba(30,37,64,.55) 45%,rgba(40,48,72,.92));}
+  .hero-inner{position:relative;z-index:1;padding-top:120px;padding-bottom:90px;max-width:820px;}
+  .hero .script{font-size:clamp(4.5rem,13vw,8.5rem);line-height:.8;display:block;color:var(--cream);text-shadow:0 6px 40px rgba(0,0,0,.4);}
+  .hero-logo{width:min(640px,86%);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 8px 40px rgba(0,0,0,.45));}
+  .foot-logo{width:min(300px,72%);height:auto;display:block;margin:0 auto 8px;}
+  .hero .vc{font-family:var(--sans);font-size:.82rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-soft);margin-top:18px;}
+  .hero p.lead{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.5vw,1.6rem);color:var(--cream);max-width:560px;margin:26px auto 0;font-weight:400;}
+  .hero .loc{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:18px;}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
+
+  /* PIATTI */
+  .dish-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .card{background:var(--navy-soft);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+  .card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(0,0,0,.6);}
+  .card .ph{aspect-ratio:1/1;overflow:hidden;}
+  .card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;}
+  .card:hover .ph img{transform:scale(1.05);}
+  .card .body{padding:22px 22px 26px;}
+  .card h3{font-size:1.5rem;color:var(--cream);letter-spacing:.01em;}
+  .card p{color:var(--muted);font-size:.95rem;margin-top:6px;}
+
+  /* COSTATE FEATURE */
+  .costate{background:var(--navy-deep);}
+  .costate .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .costate .ph{border-radius:4px;overflow:hidden;box-shadow:0 30px 70px -36px rgba(0,0,0,.7);aspect-ratio:4/5;}
+  .costate .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .costate .script{font-size:3rem;line-height:.9;}
+  .costate h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:6px 0 18px;color:var(--cream);}
+  .costate p{color:var(--muted);margin-bottom:14px;font-size:1.04rem;}
+  .costate .who{display:inline-flex;align-items:center;gap:10px;color:var(--gold-soft);font-family:var(--serif);font-style:italic;font-size:1.2rem;margin-top:4px;}
+
+  /* MENU */
+  .menu{background:var(--navy);}
+  .course{margin-bottom:64px;}
+  .course:last-child{margin-bottom:0;}
+  .course-title{text-align:center;font-family:var(--script);color:var(--gold-soft);font-weight:400;font-size:3rem;line-height:.9;margin-bottom:8px;}
+  .course-sub{text-align:center;color:var(--muted);font-size:.9rem;font-style:italic;margin-bottom:30px;}
+  .dishes{display:grid;grid-template-columns:1fr 1fr;gap:26px 56px;max-width:920px;margin:0 auto;}
+  .dish{text-align:center;}
+  .dish .d-name{font-family:var(--serif);font-weight:600;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase;color:var(--cream);}
+  .dish .d-desc{color:var(--muted);font-size:.96rem;margin-top:4px;}
+  .dish .d-price{font-family:var(--sans);color:var(--gold);font-size:.95rem;margin-top:6px;letter-spacing:.05em;}
+  .menu-note{text-align:center;color:var(--muted);font-size:.85rem;font-style:italic;margin-top:30px;}
+  .cover-note{text-align:center;color:var(--gold);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;margin-top:48px;}
+  .cheese .dishes{grid-template-columns:1fr 1fr;}
+  .cheese .d-name{font-size:1.15rem;}
+  .deg-price{text-align:center;font-family:var(--serif);font-size:1.5rem;color:var(--gold-soft);margin-top:24px;}
+
+  /* RECENSIONI */
+  .reviews{background:var(--navy-deep);text-align:center;}
+  .gscore{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:40px;}
+  .gscore .num{font-family:var(--serif);font-size:4rem;line-height:1;color:var(--cream);}
+  .stars{color:var(--gold);font-size:1.4rem;letter-spacing:.12em;}
+  .gscore .cnt{color:var(--muted);font-size:.9rem;letter-spacing:.04em;}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto 40px;}
+  .rev{background:var(--navy-soft);border:1px solid var(--line);border-radius:4px;padding:26px 24px;text-align:left;}
+  .rev .q{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--cream);line-height:1.5;}
+  .rev .by{color:var(--gold);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;margin-top:14px;}
+  .rev-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* CONTATTI */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+  .info-row{display:flex;gap:15px;padding-top:16px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .info-row:first-child{padding-top:0;}
+  .info-row .ic{color:var(--gold);flex-shrink:0;width:24px;display:flex;justify-content:center;padding-top:4px;}
+  .info-row .ic svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .info-row b{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:600;font-family:var(--sans);}
+  .info-row span,.info-row a{font-size:1.05rem;color:var(--cream);overflow-wrap:anywhere;}
+  .info-row>div:last-child{min-width:0;flex:1;}
+  .hours{list-style:none;margin-top:4px;}
+  .hours li{display:flex;justify-content:space-between;gap:24px;padding-top:6px;padding-bottom:6px;border-bottom:1px dotted var(--line);font-size:.96rem;}
+  .hours li span:last-child{white-space:nowrap;color:var(--muted);}
+  .hours li.closed span:last-child{color:var(--gold);}
+  .map{border-radius:4px;overflow:hidden;min-height:340px;border:1px solid var(--line);}
+  .map iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:grayscale(.2) contrast(1.05);}
+
+  /* FOOTER */
+  footer{background:var(--navy-deep);padding-top:56px;padding-bottom:30px;text-align:center;border-top:1px solid var(--line);}
+  footer .script{font-size:3rem;}
+  footer .vc{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+  footer .fsoc{display:flex;gap:16px;justify-content:center;margin:20px 0 22px;}
+  footer .fsoc a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.25s;}
+  footer .fsoc a:hover{border-color:var(--gold);background:rgba(194,163,107,.12);}
+  footer .fsoc svg{width:18px;height:18px;stroke:var(--cream);fill:none;stroke-width:1.6;}
+  footer .credit{font-size:.82rem;color:var(--muted);margin-top:14px;}
+  footer .credit a{color:var(--gold-soft);}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;}
+  .modal.open{display:flex;}
+  .modal-bg{position:absolute;inset:0;background:rgba(15,19,34,.7);backdrop-filter:blur(4px);}
+  .modal-card{position:relative;background:var(--navy-soft);border:1px solid var(--line);border-radius:6px;max-width:420px;width:100%;padding:42px 34px;text-align:center;}
+  .modal-card .script{font-size:2.6rem;line-height:.9;}
+  .modal-card p{color:var(--muted);margin:6px 0 20px;font-size:.95rem;}
+  .modal-card .tel{font-family:var(--serif);font-size:1.8rem;color:var(--gold-soft);margin-bottom:14px;}
+  .modal-card .btn{width:100%;justify-content:center;margin-top:10px;}
+  .modal-close{position:absolute;top:12px;right:16px;background:none;border:0;font-size:1.6rem;color:var(--muted);cursor:pointer;line-height:1;}
+
+  @media(max-width:880px){
+    .wrap{padding-left:20px;padding-right:20px;}
+    .sect{padding-top:64px;padding-bottom:64px;}
+    .sect-head{margin-bottom:44px;}
+    .sect-head .script{font-size:2.8rem;}
+    nav.links{position:fixed;inset:0;height:100dvh;width:100%;background:linear-gradient(160deg,var(--navy),var(--navy-deep));flex-direction:column;justify-content:center;align-items:center;gap:26px;opacity:0;visibility:hidden;transition:.32s;z-index:65;}
+    nav.links.open{opacity:1;visibility:visible;}
+    nav.links a:not(.btn){font-family:var(--serif);font-size:1.7rem;text-transform:none;letter-spacing:.01em;}
+    .burger{display:block;}
+    header.menu-open .burger span{background:var(--cream);}
+    header.menu-open .burger span:nth-child(1){top:10px;transform:rotate(45deg);}
+    header.menu-open .burger span:nth-child(2){opacity:0;}
+    header.menu-open .burger span:nth-child(3){top:10px;transform:rotate(-45deg);}
+    .hero{min-height:92vh;}
+    .dish-grid{grid-template-columns:1fr;gap:22px;}
+    .card .ph{aspect-ratio:16/10;}
+    .costate .wrap{grid-template-columns:1fr;gap:30px;}
+    .costate .ph{aspect-ratio:4/3;max-height:340px;order:-1;}
+    .dishes{grid-template-columns:1fr;gap:22px;}
+    .cheese .dishes{grid-template-columns:1fr;}
+    .rev-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:34px;}
+    .map,.map iframe{min-height:280px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap bar">
+    <a href="#top" class="brand"><img class="mk" src="images/nn.png" alt="Connubio" /><span class="bt"><b>Connubio</b><small>vino e cucina</small></span></a>
+    <nav class="links" id="navlinks">
+      <a href="#piatti" onclick="closeMenu()">Piatti</a>
+      <a href="#menu" onclick="closeMenu()">Menù</a>
+      <a href="#recensioni" onclick="closeMenu()">Recensioni</a>
+      <a href="#contatti" onclick="closeMenu()">Contatti</a>
+      <a href="#" class="btn btn-gold" onclick="openModal();closeMenu();return false;">Prenota</a>
+    </nav>
+    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-inner wrap">
+    <img class="hero-logo" src="images/connubio.png" alt="Connubio" />
+    <div class="vc">vino e cucina</div>
+    <p class="lead">Cucina di territorio e ricerca, dove ogni piatto è un incontro di sapori.</p>
+    <div class="loc">Pinerolo · Vicolo Termine 2</div>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-gold" onclick="openModal();return false;">Prenota un tavolo</a>
+      <a href="#menu" class="btn btn-out">Scopri il menù</a>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="piatti">
+  <div class="wrap">
+    <div class="sect-head">
+      <span class="eyebrow">Dalla nostra cucina</span>
+      <span class="script">I nostri piatti</span>
+      <div class="rule"></div>
+      <p>Pasta di produzione propria, materie prime selezionate e qualche assaggio del nuovo menù.</p>
+    </div>
+    <div class="dish-grid">
+      <div class="card">
+        <div class="ph"><img src="images/tartare.jpg" loading="lazy" alt="Carne cruda battuta" /></div>
+        <div class="body"><h3>Carne cruda battuta</h3><p>Essenziale, autentica, senza compromessi. Pura emozione.</p></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/gricia.jpg" loading="lazy" alt="Maccheroni alla gricia" /></div>
+        <div class="body"><h3>Maccheroni al bronzo</h3><p>La gricia: pecorino, pepe e guanciale. Pochi ingredienti, nessun compromesso.</p></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/agnolotti.jpg" loading="lazy" alt="Agnolotti di carne" /></div>
+        <div class="body"><h3>Agnolotti di carne</h3><p>Avvolti da un intenso jus di vitella piemontese. Profondi, avvolgenti, essenziali.</p></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/casarecce.jpg" loading="lazy" alt="Casarecce al basilico" /></div>
+        <div class="body"><h3>Casarecce</h3><p>Crema al basilico e bagigi salate.</p></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/anatra.jpg" loading="lazy" alt="Anatra" /></div>
+        <div class="body"><h3>Anatra</h3><p>Frutti rossi con patate e limone.</p></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/costata.jpg" loading="lazy" alt="Costata frollata" /></div>
+        <div class="body"><h3>Le costate</h3><p>Selezione e frollatura curate nel dettaglio. Una scelta precisa.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect costate">
+  <div class="wrap">
+    <div class="ph"><img src="images/costata.jpg" loading="lazy" alt="Costata alla griglia" /></div>
+    <div>
+      <span class="eyebrow">Le costate</span>
+      <span class="script">Materia &amp; tempo</span>
+      <h2>Selezione e frollatura, senza compromessi</h2>
+      <p>Le nostre costate, italiane e internazionali, nascono da un'attenta selezione curata con il maestro macellaio Davide Ferro di Abbadia Alpina.</p>
+      <p>Ogni taglio è sottoposto a una frollatura che parte da un minimo di 40 giorni — 20 per la pregiata Razza Piemontese Certificata — un affinamento naturale che rende la carne straordinariamente tenera e succosa.</p>
+      <p>La disponibilità varia ogni giorno: chiedici la selezione del momento per scoprire le proposte.</p>
+      <span class="who">— in collaborazione con Davide Ferro Carni</span>
+    </div>
+  </div>
+</section>
+
+<section class="sect menu" id="menu">
+  <div class="wrap">
+    <div class="sect-head">
+      <span class="eyebrow">Il menù</span>
+      <span class="script">Alla carta</span>
+      <div class="rule"></div>
+      <p>Una cucina che intreccia tradizione e ricerca. La nostra pasta è di produzione propria.</p>
+    </div>
+
+    <div class="course">
+      <div class="course-title">Antipasti</div>
+      <div class="dishes">
+        <div class="dish"><div class="d-name">Tataki di manzo</div><div class="d-desc">cipolla rossa, ristretto di salsa ponzu e ginger Nonino spirit</div><div class="d-price">€ 15</div></div>
+        <div class="dish"><div class="d-name">Melanzana</div><div class="d-desc">salsa di pomodoro, basilico e ricotta</div><div class="d-price">€ 13</div></div>
+        <div class="dish"><div class="d-name">È tonnato dalla Calabria!</div><div class="d-desc">vitello al punto rosa con salsa tonnata all'nduja</div><div class="d-price">€ 15</div></div>
+        <div class="dish"><div class="d-name">La pancia</div><div class="d-desc">emulsione di miele e salvia e crumble di acciuga</div><div class="d-price">€ 14</div></div>
+        <div class="dish"><div class="d-name">Il nostro pollo e peperoni</div><div class="d-desc">con olio aromatizzato alla menta</div><div class="d-price">€ 14</div></div>
+      </div>
+    </div>
+
+    <div class="course">
+      <div class="course-title">Primi</div>
+      <div class="course-sub">Tutta la pasta è di nostra produzione</div>
+      <div class="dishes">
+        <div class="dish"><div class="d-name">Ferrazzuoli calabresi al ferretto</div><div class="d-desc">'nduja, cipolla di Tropea, pomodoro secco e panura al finocchietto</div><div class="d-price">€ 15</div></div>
+        <div class="dish"><div class="d-name">Maccheroni trafilati al bronzo</div><div class="d-desc">pecorino, pepe e guanciale</div><div class="d-price">€ 16</div></div>
+        <div class="dish"><div class="d-name">Casarecce</div><div class="d-desc">crema al basilico e bagigi salate</div><div class="d-price">€ 14</div></div>
+        <div class="dish"><div class="d-name">Agnolotti</div><div class="d-desc">di carne, con jus di vitella piemontese</div><div class="d-price">€ 15</div></div>
+      </div>
+    </div>
+
+    <div class="course">
+      <div class="course-title">Secondi</div>
+      <div class="dishes">
+        <div class="dish"><div class="d-name">Agnello</div><div class="d-desc">scamoncino cotto a bassa temperatura</div><div class="d-price">€ 20</div></div>
+        <div class="dish"><div class="d-name">Stinco di maiale al forno</div><div class="d-desc">&nbsp;</div><div class="d-price">€ 19</div></div>
+        <div class="dish"><div class="d-name">Anatra</div><div class="d-desc">frutti rossi con patate e limone</div><div class="d-price">€ 18</div></div>
+        <div class="dish"><div class="d-name">Scamone di Angus</div><div class="d-desc">alla griglia (200 gr)</div><div class="d-price">€ 22</div></div>
+      </div>
+    </div>
+
+    <div class="course">
+      <div class="course-title">Le costate</div>
+      <div class="dishes" style="grid-template-columns:1fr;max-width:680px;">
+        <div class="dish"><div class="d-name">Selezione del giorno</div><div class="d-desc">tagli italiani e internazionali, frollatura da 40 giorni (20 per la Razza Piemontese Certificata) · chiedi la selezione del momento</div></div>
+        <div class="dish"><div class="d-name">Contorni</div><div class="d-desc">secondo disponibilità del giorno e della stagionalità</div><div class="d-price">€ 5 – € 6</div></div>
+      </div>
+    </div>
+
+    <div class="course cheese">
+      <div class="course-title">Degustazione di formaggi</div>
+      <div class="dishes">
+        <div class="dish"><div class="d-name">Pagliettina</div><div class="d-desc">latte misto pecora, vacca e capra · dolce e latteo · Piemonte</div></div>
+        <div class="dish"><div class="d-name">Toma del Ticcio</div><div class="d-desc">latte vaccino, pasta giallo paglierino · molto intenso, note di erbe alpine · Piemonte</div></div>
+        <div class="dish"><div class="d-name">Grande pecora sardo</div><div class="d-desc">latte di pecora, pasta semidura · forte e piccante · Sardegna</div></div>
+        <div class="dish"><div class="d-name">Erborinato San Carlo caffè in crosta</div><div class="d-desc">latte vaccino, forte e leggermente piccante con aroma di caffè · Piemonte</div></div>
+      </div>
+      <div class="deg-price">Degustazione · € 15</div>
+    </div>
+
+    <div class="course">
+      <div class="course-title">Dolci</div>
+      <div class="dishes">
+        <div class="dish"><div class="d-name">Pesche ripiene al cioccolato</div><div class="d-desc">&nbsp;</div><div class="d-price">€ 7</div></div>
+        <div class="dish"><div class="d-name">Biscotto, crema al mascarpone e caffè</div><div class="d-desc">&nbsp;</div><div class="d-price">€ 7</div></div>
+        <div class="dish"><div class="d-name">«Io oggi lavo i piatti!»</div><div class="d-desc">pan di spagna, crema pasticcera al rosmarino, cioccolato e liquirizia con schiuma alla menta</div><div class="d-price">€ 8</div></div>
+        <div class="dish"><div class="d-name">Crème brûlée agli agrumi</div><div class="d-desc">&nbsp;</div><div class="d-price">€ 7</div></div>
+        <div class="dish"><div class="d-name">Bonet</div><div class="d-desc">&nbsp;</div><div class="d-price">€ 6</div></div>
+      </div>
+    </div>
+
+    <div class="course">
+      <div class="course-title">Vini da dessert</div>
+      <div class="dishes">
+        <div class="dish"><div class="d-name">Sauternes Haut–Bergeron</div><div class="d-desc">Preignac, Francia</div><div class="d-price">€ 7</div></div>
+        <div class="dish"><div class="d-name">Favinia · Zibibbo Passito Riserva Firriato</div><div class="d-desc">Paceco, Sicilia</div><div class="d-price">€ 8</div></div>
+        <div class="dish"><div class="d-name">L'Ecrù · Zibibbo Passito Firriato</div><div class="d-desc">Paceco, Sicilia</div><div class="d-price">€ 6</div></div>
+        <div class="dish"><div class="d-name">Malvamunt · Malvasia Passito Dell'Erba</div><div class="d-desc">Pinerolo, Piemonte</div><div class="d-price">€ 5</div></div>
+        <div class="dish"><div class="d-name">Vin Santo di Carmignano · Capezzana Ris. 2016</div><div class="d-desc">Carmignano, Toscana</div><div class="d-price">€ 8</div></div>
+      </div>
+    </div>
+
+    <div class="cover-note">Coperto e servizio € 2</div>
+  </div>
+</section>
+
+<section class="sect reviews" id="recensioni">
+  <div class="wrap">
+    <div class="sect-head">
+      <span class="eyebrow">Dicono di noi</span>
+      <span class="script">Recensioni</span>
+    </div>
+    <div class="gscore">
+      <div class="num">4,8</div>
+      <div class="stars">★★★★★</div>
+      <div class="cnt">su Google · 148 recensioni</div>
+    </div>
+    <div class="rev-grid">
+      <div class="rev"><div class="q">«Sapori intensi e tante proposte, dalla carne alle verdure: una cena davvero speciale.»</div><div class="by">Recensione Google</div></div>
+      <div class="rev"><div class="q">«Costata cotta alla perfezione e vini del territorio. Non volevamo più andare via.»</div><div class="by">Recensione Google</div></div>
+      <div class="rev"><div class="q">«Tartare e guancia da un altro mondo, servizio gentilissimo.»</div><div class="by">Recensione Google</div></div>
+    </div>
+    <div class="rev-cta">
+      <a class="btn btn-gold" href="https://search.google.com/local/reviews?placeid=ChIJnaZ_kikliEcRnfo3_uBCSDI" target="_blank" rel="noopener">Leggi le recensioni</a>
+      <a class="btn btn-out" href="https://search.google.com/local/writereview?placeid=ChIJnaZ_kikliEcRnfo3_uBCSDI" target="_blank" rel="noopener">Lascia una recensione</a>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="contatti">
+  <div class="wrap">
+    <div class="sect-head">
+      <span class="eyebrow">Dove siamo</span>
+      <span class="script">Contatti &amp; orari</span>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><b>Indirizzo</b><span>Vicolo Termine 2, 10064 Pinerolo (TO)</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l4 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></div>
+          <div><b>Telefono &amp; prenotazioni</b><a href="tel:+393294784243">329 478 4243</a></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></div>
+          <div><b>Social</b><a href="https://www.instagram.com/connubiovinoecucina" target="_blank" rel="noopener">@connubiovinoecucina</a> · <a href="https://www.facebook.com/p/Connubio-vino-e-cucina-61568280865370/" target="_blank" rel="noopener">Facebook</a></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><b>Orari</b>
+            <ul class="hours">
+              <li><span>Lunedì</span><span>19:00 – 23:00</span></li>
+              <li><span>Martedì</span><span>19:00 – 23:00</span></li>
+              <li><span>Mercoledì</span><span>19:00 – 23:00</span></li>
+              <li class="closed"><span>Giovedì</span><span>Chiuso</span></li>
+              <li><span>Venerdì</span><span>19:00 – 23:00</span></li>
+              <li><span>Sabato</span><span>19:00 – 23:00</span></li>
+              <li><span>Domenica</span><span>12:30 – 14:30 · 19:00 – 23:00</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Vicolo%20Termine%202%2C%2010064%20Pinerolo%20TO&output=embed" title="Mappa Connubio vino e cucina"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="images/connubio.png" alt="Connubio" class="foot-logo" />
+    <div class="vc">vino e cucina · Pinerolo</div>
+    <div class="fsoc">
+      <a href="tel:+393294784243" aria-label="Telefono"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l4 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></a>
+      <a href="https://www.instagram.com/connubiovinoecucina" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></a>
+      <a href="https://www.facebook.com/p/Connubio-vino-e-cucina-61568280865370/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h2V5h-2c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2l.5-3H14V8.5c0-.3.2-.5.5-.5Z"/></svg></a>
+    </div>
+    <p class="credit">© 2026 Connubio vino e cucina · realizzato da <a href="https://mattiacaneparo.it" target="_blank" rel="noopener">Mattia Caneparo</a></p>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-bg" onclick="closeModal()"></div>
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()" aria-label="Chiudi">×</button>
+    <span class="script">Prenota</span>
+    <p>Chiamaci o scrivici, ti troviamo il tavolo giusto.</p>
+    <div class="tel">329 478 4243</div>
+    <a class="btn btn-gold" href="tel:+393294784243">Chiama ora</a>
+    <a class="btn btn-out" href="https://www.instagram.com/connubiovinoecucina" target="_blank" rel="noopener">Scrivici su Instagram</a>
+  </div>
+</div>
+
+<script>
+  const header=document.getElementById('header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY>40); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  const nav=document.getElementById('navlinks');
+  function toggleMenu(){ const o=nav.classList.toggle('open'); header.classList.toggle('menu-open',o); document.body.style.overflow=o?'hidden':''; }
+  function closeMenu(){ nav.classList.remove('open'); header.classList.remove('menu-open'); document.body.style.overflow=''; }
+  const modal=document.getElementById('modal');
+  function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); closeMenu(); } });
+</script>
+</body>
+</html>
