@@ -180,10 +180,13 @@
     header.menu-open .burger span:nth-child(2){opacity:0;}
     header.menu-open .burger span:nth-child(3){top:10px;transform:rotate(-45deg);}
     .hero{min-height:92vh;}
-    .dish-grid{display:flex;grid-template-columns:none;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-20px;margin-right:-20px;padding:4px 20px 12px;scroll-padding-left:20px;}
+    .dish-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-20px;margin-right:-20px;padding:8px 11vw 16px;scroll-snap-stop:always;}
     .dish-grid::-webkit-scrollbar{display:none;}
-    .card{flex:0 0 80%;scroll-snap-align:start;}
-    .card .ph{aspect-ratio:16/11;}
+    .card{flex:0 0 78vw;scroll-snap-align:center;opacity:.5;transform:scale(.92);transition:opacity .5s ease,transform .5s ease;box-shadow:none;-webkit-tap-highlight-color:transparent;}
+    .card:hover{transform:scale(.92);box-shadow:none;}
+    .card:hover .ph img{transform:none;}
+    .card.is-active,.card.is-active:hover{opacity:1;transform:scale(1);box-shadow:0 24px 50px -28px rgba(0,0,0,.7);}
+    .card .ph{aspect-ratio:4/5;}
     .swipe-hint{display:block;}
     .costate .wrap{grid-template-columns:1fr;gap:30px;}
     .costate .ph{aspect-ratio:4/3;max-height:340px;order:-1;}
@@ -467,6 +470,35 @@
   function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
   function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); closeMenu(); } });
+
+  // Carosello piatti (mobile): auto-scroll + card centrale evidenziata
+  (function(){
+    const grid=document.querySelector('.dish-grid');
+    if(!grid) return;
+    const cards=Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    if(!cards.length) return;
+    const mq=window.matchMedia('(max-width:880px)');
+    let timer=null,paused=false,resumeT=null,raf;
+    function centerActive(){
+      if(!mq.matches) return;
+      const gr=grid.getBoundingClientRect(), mid=gr.left+gr.width/2;
+      let best=cards[0],bd=Infinity;
+      cards.forEach(function(c){ const r=c.getBoundingClientRect(); const d=Math.abs(r.left+r.width/2-mid); if(d<bd){bd=d;best=c;} });
+      cards.forEach(function(c){ c.classList.toggle('is-active',c===best); });
+    }
+    function go(i){ const c=cards[(i+cards.length)%cards.length]; grid.scrollTo({left:c.offsetLeft-(grid.clientWidth-c.clientWidth)/2,behavior:'smooth'}); }
+    function next(){ go(cards.indexOf(grid.querySelector('.card.is-active'))+1); }
+    function start(){ stop(); if(mq.matches) timer=setInterval(function(){ if(!paused) next(); },2600); }
+    function stop(){ if(timer){clearInterval(timer);timer=null;} }
+    function pause(){ paused=true; clearTimeout(resumeT); resumeT=setTimeout(function(){paused=false;},4500); }
+    grid.addEventListener('scroll',function(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(centerActive); },{passive:true});
+    ['touchstart','pointerdown','wheel'].forEach(function(ev){ grid.addEventListener(ev,pause,{passive:true}); });
+    function setup(){ if(mq.matches){ centerActive(); start(); } else { stop(); cards.forEach(function(c){c.classList.remove('is-active');}); } }
+    if(mq.addEventListener) mq.addEventListener('change',setup); else if(mq.addListener) mq.addListener(setup);
+    window.addEventListener('resize',centerActive,{passive:true});
+    setup();
+    window.addEventListener('load',centerActive);
+  })();
 </script>
 </body>
 </html>
