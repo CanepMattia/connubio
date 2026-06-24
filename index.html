@@ -488,15 +488,26 @@
     }
     function go(i){ const c=cards[(i+cards.length)%cards.length]; grid.scrollTo({left:c.offsetLeft-(grid.clientWidth-c.clientWidth)/2,behavior:'smooth'}); }
     function next(){ go(cards.indexOf(grid.querySelector('.card.is-active'))+1); }
-    function start(){ stop(); if(mq.matches) timer=setInterval(function(){ if(!paused) next(); },2600); }
+    let inView=false;
+    function start(){ stop(); if(mq.matches && inView) timer=setInterval(function(){ if(!paused) next(); },2400); }
     function stop(){ if(timer){clearInterval(timer);timer=null;} }
     function pause(){ paused=true; clearTimeout(resumeT); resumeT=setTimeout(function(){paused=false;},4500); }
     grid.addEventListener('scroll',function(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(centerActive); },{passive:true});
     ['touchstart','pointerdown','wheel'].forEach(function(ev){ grid.addEventListener(ev,pause,{passive:true}); });
+    // Avvia l'auto-scroll SOLO quando il carosello è davvero a schermo
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          inView = e.isIntersecting && e.intersectionRatio>=0.6;
+          if(inView){ centerActive(); start(); } else { stop(); }
+        });
+      },{threshold:[0,0.6,1]});
+      io.observe(grid);
+    } else { inView=true; }
     function setup(){ if(mq.matches){ centerActive(); start(); } else { stop(); cards.forEach(function(c){c.classList.remove('is-active');}); } }
     if(mq.addEventListener) mq.addEventListener('change',setup); else if(mq.addListener) mq.addListener(setup);
     window.addEventListener('resize',centerActive,{passive:true});
-    setup();
+    centerActive();
     window.addEventListener('load',centerActive);
   })();
 </script>
